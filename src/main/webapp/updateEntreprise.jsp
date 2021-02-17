@@ -11,13 +11,13 @@
 </section>
 
 
-<form action="./update" method="get">
+<form action="./updateEntreprise" method="get">
     <p>ID:</p>
     <input type="text" name="id"/>
     <br/>
 
-    <p>Type:</p>
-    <input type="text" name="type"/>
+    <p>Nom:</p>
+    <input type="text" name="nom"/>
     <br/>
     <p>Numero:</p>
     <input type="text" name="numero"/>

@@ -10,11 +10,14 @@ import java.util.List;
 public interface DAOCompte {
 
    // public void insertCompte(Compte compte) throws SQLException;
-    public void updateCompte(Compte compte) throws SQLException;
-    public void deleteCompte(int id) throws SQLException;
-    public Compte selectCompteType(String type);
-    public List<Compte> allCompte() throws SQLException;
+   public void updatePersone(Persone persone) throws SQLException ;
+    public void updateEntreprise(Entreprise entreprise) throws SQLException;
+   // public void deleteCompte(int id) throws SQLException;
+   // public Compte selectCompteType(String type);
+   // public List<Compte> allCompte() throws SQLException;
     public void insertComptePersone(Persone persone) throws SQLException;
     public void insertCompteEntreprise(Entreprise entreprise) throws SQLException;
+    public void deleteEntreprise(int id) throws SQLException;
+    public void deletePersone(int id) throws SQLException;
 
 }

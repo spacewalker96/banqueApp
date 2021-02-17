@@ -21,7 +21,7 @@ crossorigin="anonymous">
 <div class="container">
 
 <%--<a href="delete.jsp">Delete</a>
-<a href="update.jsp">update</a>
+<a href="updateEntreprise.jsp">update</a>
 <a href="insertEntr.jsp">Insert Entreprise</a>
     <a href="insertPers.jsp">Insert Presone</a>
     <a href="/Servlet2">Liste</a>--%>
@@ -33,12 +33,14 @@ crossorigin="anonymous">
         <th><a href="/Servlet2">Liste Et Suprimer</a></th>
         <th><a href="insertEntr.jsp">Insert Entreprise</a></th>
         <th><a href="insertPers.jsp">Insert Presone</a></th>
-        <th><a href="update.jsp">update</a></th>
-        <%--//<th>numero</th>--%>
+        <th><a href="updateEntreprise.jsp">update Entreprise</a></th>
+        <th><a href="updatePersonne.jsp">update Presone</a></th>
+
+    <%--//<th>numero</th>--%>
     </tr>
     </thead>
     <tbody>
-   <%
+   <%--<%
 
        List<Compte> x= (List<Compte>) request.getAttribute("comptes");
  %>
@@ -49,7 +51,7 @@ crossorigin="anonymous">
             <a href="delete?id=<c:out value='${x.compte_id}' />">Delete</a>
 
         </tr>
-    </c:forEach>
+    </c:forEach>--%>
 <%--<a href="<%=request.getContextPath()%>/"
          class="nav-link">comptes</a>--%>
 <%--

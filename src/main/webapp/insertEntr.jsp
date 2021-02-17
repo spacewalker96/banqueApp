@@ -18,9 +18,7 @@ GET and POST services can be according to the problem statement-->
     <input type="text" name="id"/>
     <br/>--%>
 
-    <p>Type:</p>
-    <input type="text" name="type"/>
-    <br/>
+
     <p>Numero:</p>
     <input type="text" name="numero"/>
     <br/><br/><br/>

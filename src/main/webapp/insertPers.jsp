@@ -12,9 +12,6 @@
 
 
 <form action="./insertPers" method="get">
-    <p>Type:</p>
-    <input type="text" name="type"/>
-    <br/>
     <p>Numero:</p>
     <input type="text" name="numero"/>
     <br/><br/><br/>

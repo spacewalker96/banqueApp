@@ -790,14 +790,11 @@ false Zulu
       <ObjectId>13442</ObjectId>
       <Comment>default administrative connection database</Comment>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>567</IntrospectionStateNumber>
+      <IntrospectionStateNumber>587</IntrospectionStateNumber>
       <Current>1</Current>
       <Relations>sequence|table|16423|16425|1
 sequence|table|16433|16435|1
 sequence|table|16479|16481|1
-sequence|table|16491|16493|1
-sequence|table|16502|16504|1
-sequence|table|16508|16510|1
 sequence|table|16514|16516|1
 sequence|table|16523|16525|4
 sequence|table|16533|16535|4
@@ -876,7 +873,7 @@ UC/10
 </Acl>
       <StateNumber>287</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>568</IntrospectionStateNumber>
+      <IntrospectionStateNumber>588</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <extension id="18" parent="2" name="adminpack">
@@ -990,70 +987,37 @@ UC/10
       <StateNumber>556</StateNumber>
       <DataType>integer|0s</DataType>
     </sequence>
-    <sequence id="32" parent="17" name="compte_compte_id_seq">
-      <ObjectId>16491</ObjectId>
-      <Owner>postgres</Owner>
-      <StateNumber>532</StateNumber>
-      <DataType>integer|0s</DataType>
-    </sequence>
-    <sequence id="33" parent="17" name="entr_entr_id_seq">
+    <sequence id="32" parent="17" name="entr_entr_id_seq">
       <ObjectId>16523</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>559</StateNumber>
       <DataType>integer|0s</DataType>
     </sequence>
-    <sequence id="34" parent="17" name="entreprise_entreprise_id_seq">
-      <ObjectId>16508</ObjectId>
-      <Owner>postgres</Owner>
-      <StateNumber>534</StateNumber>
-      <DataType>integer|0s</DataType>
-    </sequence>
-    <sequence id="35" parent="17" name="pers_pers_id_seq">
+    <sequence id="33" parent="17" name="pers_pers_id_seq">
       <ObjectId>16533</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>563</StateNumber>
       <DataType>integer|0s</DataType>
     </sequence>
-    <sequence id="36" parent="17" name="person_person_id_seq">
-      <ObjectId>16502</ObjectId>
-      <Owner>postgres</Owner>
-      <StateNumber>533</StateNumber>
-      <DataType>integer|0s</DataType>
-    </sequence>
-    <table id="37" parent="17" name="acount">
+    <table id="34" parent="17" name="acount">
       <ObjectId>16516</ObjectId>
       <SuccessorIds>16525,16535</SuccessorIds>
       <Owner>postgres</Owner>
       <StateNumber>559</StateNumber>
     </table>
-    <table id="38" parent="17" name="compte">
-      <ObjectId>16493</ObjectId>
-      <Owner>postgres</Owner>
-      <StateNumber>532</StateNumber>
-    </table>
-    <table id="39" parent="17" name="entr">
+    <table id="35" parent="17" name="entr">
       <ObjectId>16525</ObjectId>
       <AncestorIds>16516</AncestorIds>
       <Owner>postgres</Owner>
       <StateNumber>559</StateNumber>
     </table>
-    <table id="40" parent="17" name="entreprise">
-      <ObjectId>16510</ObjectId>
-      <Owner>postgres</Owner>
-      <StateNumber>534</StateNumber>
-    </table>
-    <table id="41" parent="17" name="pers">
+    <table id="36" parent="17" name="pers">
       <ObjectId>16535</ObjectId>
       <AncestorIds>16516</AncestorIds>
       <Owner>postgres</Owner>
       <StateNumber>563</StateNumber>
     </table>
-    <table id="42" parent="17" name="person">
-      <ObjectId>16504</ObjectId>
-      <Owner>postgres</Owner>
-      <StateNumber>533</StateNumber>
-    </table>
-    <column id="43" parent="37" name="acount_id">
+    <column id="37" parent="34" name="acount_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -1061,64 +1025,19 @@ UC/10
       <DefaultExpression>nextval(&apos;acount_acount_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="44" parent="37" name="acount_numero">
+    <column id="38" parent="34" name="acount_numero">
       <Position>2</Position>
       <DataType>numeric|0s</DataType>
       <StateNumber>556</StateNumber>
       <TypeId>1700</TypeId>
     </column>
-    <column id="45" parent="37" name="acount_solde">
+    <column id="39" parent="34" name="acount_solde">
       <Position>3</Position>
       <DataType>double precision|0s</DataType>
       <StateNumber>556</StateNumber>
       <TypeId>701</TypeId>
     </column>
-    <column id="46" parent="38" name="compte_id">
-      <Position>1</Position>
-      <DataType>integer|0s</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>532</StateNumber>
-      <DefaultExpression>nextval(&apos;compte_compte_id_seq&apos;::regclass)</DefaultExpression>
-      <TypeId>23</TypeId>
-    </column>
-    <column id="47" parent="38" name="compte_numero">
-      <Position>2</Position>
-      <DataType>numeric|0s</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>532</StateNumber>
-      <TypeId>1700</TypeId>
-    </column>
-    <column id="48" parent="38" name="compte_solde">
-      <Position>3</Position>
-      <DataType>double precision|0s</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>532</StateNumber>
-      <TypeId>701</TypeId>
-    </column>
-    <column id="49" parent="38" name="compte_type">
-      <Position>4</Position>
-      <DataType>integer|0s</DataType>
-      <StateNumber>532</StateNumber>
-      <TypeId>23</TypeId>
-    </column>
-    <index id="50" parent="38" name="compte_pkey">
-      <ObjectId>16500</ObjectId>
-      <StateNumber>532</StateNumber>
-      <ColNames>compte_id</ColNames>
-      <Unique>1</Unique>
-      <Primary>1</Primary>
-      <AccessMethodId>403</AccessMethodId>
-      <CollationIds>0</CollationIds>
-      <ClassIds>1978</ClassIds>
-    </index>
-    <key id="51" parent="38" name="compte_pkey">
-      <ObjectId>16501</ObjectId>
-      <StateNumber>532</StateNumber>
-      <ColNames>compte_id</ColNames>
-      <Primary>1</Primary>
-      <UnderlyingIndexName>compte_pkey</UnderlyingIndexName>
-    </key>
-    <column id="52" parent="39" name="acount_id">
+    <column id="40" parent="35" name="acount_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -1127,21 +1046,21 @@ UC/10
       <DefaultExpression>nextval(&apos;acount_acount_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="53" parent="39" name="acount_numero">
+    <column id="41" parent="35" name="acount_numero">
       <Position>2</Position>
       <DataType>numeric|0s</DataType>
       <StateNumber>559</StateNumber>
       <Inherited>1</Inherited>
       <TypeId>1700</TypeId>
     </column>
-    <column id="54" parent="39" name="acount_solde">
+    <column id="42" parent="35" name="acount_solde">
       <Position>3</Position>
       <DataType>double precision|0s</DataType>
       <StateNumber>559</StateNumber>
       <Inherited>1</Inherited>
       <TypeId>701</TypeId>
     </column>
-    <column id="55" parent="39" name="entr_id">
+    <column id="43" parent="35" name="entr_id">
       <Position>4</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -1149,33 +1068,19 @@ UC/10
       <DefaultExpression>nextval(&apos;entr_entr_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="56" parent="39" name="entr_type">
+    <column id="44" parent="35" name="entr_type">
       <Position>5</Position>
       <DataType>varchar(50)|0s</DataType>
       <StateNumber>559</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="57" parent="39" name="entr_nom">
+    <column id="45" parent="35" name="entr_nom">
       <Position>6</Position>
       <DataType>varchar(50)|0s</DataType>
       <StateNumber>559</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="58" parent="40" name="entreprise_id">
-      <Position>1</Position>
-      <DataType>integer|0s</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>534</StateNumber>
-      <DefaultExpression>nextval(&apos;entreprise_entreprise_id_seq&apos;::regclass)</DefaultExpression>
-      <TypeId>23</TypeId>
-    </column>
-    <column id="59" parent="40" name="entreprise_name">
-      <Position>2</Position>
-      <DataType>varchar(50)|0s</DataType>
-      <StateNumber>534</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="60" parent="41" name="acount_id">
+    <column id="46" parent="36" name="acount_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -1184,21 +1089,21 @@ UC/10
       <DefaultExpression>nextval(&apos;acount_acount_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="61" parent="41" name="acount_numero">
+    <column id="47" parent="36" name="acount_numero">
       <Position>2</Position>
       <DataType>numeric|0s</DataType>
       <StateNumber>563</StateNumber>
       <Inherited>1</Inherited>
       <TypeId>1700</TypeId>
     </column>
-    <column id="62" parent="41" name="acount_solde">
+    <column id="48" parent="36" name="acount_solde">
       <Position>3</Position>
       <DataType>double precision|0s</DataType>
       <StateNumber>563</StateNumber>
       <Inherited>1</Inherited>
       <TypeId>701</TypeId>
     </column>
-    <column id="63" parent="41" name="pers_id">
+    <column id="49" parent="36" name="pers_id">
       <Position>4</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -1206,43 +1111,23 @@ UC/10
       <DefaultExpression>nextval(&apos;pers_pers_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="64" parent="41" name="pers_type">
+    <column id="50" parent="36" name="pers_type">
       <Position>5</Position>
       <DataType>varchar(50)|0s</DataType>
       <StateNumber>563</StateNumber>
       <DefaultExpression>&apos;Persone&apos;::character varying</DefaultExpression>
       <TypeId>1043</TypeId>
     </column>
-    <column id="65" parent="41" name="pers_nom">
+    <column id="51" parent="36" name="pers_nom">
       <Position>6</Position>
       <DataType>varchar(50)|0s</DataType>
       <StateNumber>563</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="66" parent="41" name="pers_prenom">
+    <column id="52" parent="36" name="pers_prenom">
       <Position>7</Position>
       <DataType>varchar(50)|0s</DataType>
       <StateNumber>563</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="67" parent="42" name="person_id">
-      <Position>1</Position>
-      <DataType>integer|0s</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>533</StateNumber>
-      <DefaultExpression>nextval(&apos;person_person_id_seq&apos;::regclass)</DefaultExpression>
-      <TypeId>23</TypeId>
-    </column>
-    <column id="68" parent="42" name="person_name">
-      <Position>2</Position>
-      <DataType>varchar(50)|0s</DataType>
-      <StateNumber>533</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="69" parent="42" name="person_prenom">
-      <Position>3</Position>
-      <DataType>varchar(50)|0s</DataType>
-      <StateNumber>533</StateNumber>
       <TypeId>1043</TypeId>
     </column>
   </database-model>

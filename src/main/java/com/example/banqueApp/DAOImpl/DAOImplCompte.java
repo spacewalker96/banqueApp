@@ -15,13 +15,20 @@ public class DAOImplCompte implements DAOCompte {
 
     private static final String INSERT = "INSERT INTO banque.compte" + "  (compte_type, compte_numero, compte_solde) VALUES (?, ?, ?)";
     private static String SELECT= "select compte_type,compte_numero,compte_solde from banque.compte where compte_type =?";
-    private static final String SELECT_ALL = "select * from banque.compte";
-    private static final String DELETE = "delete from banque.compte where compte_id = ?";
-    private static final String UPDATE = "update banque.compte set compte_type = ?,compte_numero= ?, compte_solde =? where compte_id = ?";
+   private static final String SELECT_ALL = "select * from banque.compte";
+   // private static final String DELETE = "delete from banque.compte where compte_id = ?";
+   // private static final String UPDATE = "update banque.compte set compte_type = ?,compte_numero= ?, compte_solde =? where compte_id = ?";
 
-    private static final String INSERT_ENTR = "INSERT INTO entr" + "  (entr_type, acount_numero, acount_solde, entr_nom) VALUES (?, ?, ?, ?)";
-    private static final String INSERT_PERS = "INSERT INTO pers" + "  (pers_type, acount_numero, acount_solde, pers_nom, pers_prenom) VALUES (?, ?, ?, ?, ?)";
+    private static final String INSERT_ENTR = "INSERT INTO entr" + "  (acount_numero, acount_solde, entr_nom) VALUES (?, ?, ?)";
+    private static final String INSERT_PERS = "INSERT INTO pers" + "  (acount_numero, acount_solde, pers_nom, pers_prenom) VALUES (?, ?, ?, ?)";
     private static String SELECTBOTH= "select pers_type,compte_numero,compte_solde from banque.compte where compte_type =?";
+    private static final String DELETEPERS = "delete from pers where acount_id = ?";
+    private static final String DELETEENTR = "delete from entr where acount_id = ?";
+    private static final String UPDATEPERS = "update pers set acount_numero = ?,acount_solde= ?, pers_nom =? , pers_prenom =? where acount_id = ?";
+    private static final String UPDATEENTR = "update entr set acount_numero = ?,acount_solde= ?, entr_nom =? where acount_id = ?";
+
+
+
 
 
 
@@ -40,10 +47,10 @@ public class DAOImplCompte implements DAOCompte {
     public void insertCompteEntreprise(Entreprise entreprise) throws SQLException {
         try (Connection connection = connect();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_ENTR)) {
-            preparedStatement.setString(1, entreprise.getCompteType());
-            preparedStatement.setLong(2, entreprise.getNumeroCompte());
-            preparedStatement.setDouble(3, entreprise.getSolde());
-            preparedStatement.setString(4, entreprise.getNom());
+           // preparedStatement.setString(1, entreprise.getCompteType());
+            preparedStatement.setLong(1, entreprise.getNumeroCompte());
+            preparedStatement.setDouble(2, entreprise.getSolde());
+            preparedStatement.setString(3, entreprise.getNom());
             //  System.out.println(preparedStatement);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -54,12 +61,10 @@ public class DAOImplCompte implements DAOCompte {
     public void insertComptePersone(Persone persone) throws SQLException {
         try (Connection connection = connect();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_PERS)) {
-            preparedStatement.setString(1, persone.getCompteType());
-            preparedStatement.setLong(2, persone.getNumeroCompte());
-            preparedStatement.setDouble(3, persone.getSolde());
-            preparedStatement.setString(4, persone.getNom());
-            preparedStatement.setString(5, persone.getPrenom());
-            //  System.out.println(preparedStatement);
+            preparedStatement.setLong(1, persone.getNumeroCompte());
+            preparedStatement.setDouble(2, persone.getSolde());
+            preparedStatement.setString(3, persone.getNom());
+            preparedStatement.setString(4, persone.getPrenom());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
         }
@@ -67,28 +72,52 @@ public class DAOImplCompte implements DAOCompte {
 
 
 
-    public void updateCompte(Compte compte) throws SQLException {
+    public void updatePersone(Persone persone) throws SQLException {
         try (Connection connection = connect();
-             PreparedStatement statement = connection.prepareStatement(UPDATE);) {
-            statement.setString(1, compte.getCompteType());
-            statement.setLong(2, compte.getNumeroCompte());
-            statement.setDouble(3, compte.getSolde());
-            statement.setInt(4, compte.getId());
+             PreparedStatement statement = connection.prepareStatement(UPDATEPERS);) {
+            // statement.setString(1, compte.getCompteType());
+            statement.setLong(1, persone.getNumeroCompte());
+            statement.setDouble(2, persone.getSolde());
+            statement.setString(3, persone.getNom());
+            statement.setString(4, persone.getPrenom());
+            statement.setInt(5, persone.getId());
+
+            statement.executeUpdate();
+        }
+
+    }
+    public void updateEntreprise(Entreprise entreprise) throws SQLException {
+        try (Connection connection = connect();
+             PreparedStatement statement = connection.prepareStatement(UPDATEENTR);) {
+            // statement.setString(1, compte.getCompteType());
+            statement.setLong(1, entreprise.getNumeroCompte());
+            statement.setDouble(2, entreprise.getSolde());
+            statement.setString(3, entreprise.getNom());
+            statement.setInt(4, entreprise.getId());
             statement.executeUpdate();
         }
 
     }
 
-    public void deleteCompte(int id) throws SQLException {
+    public void deletePersone(int id) throws SQLException {
         try (Connection connection = connect();
-             PreparedStatement statement = connection.prepareStatement(DELETE);) {
+             PreparedStatement statement = connection.prepareStatement(DELETEPERS);) {
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        }
+    }
+    public void deleteEntreprise(int id) throws SQLException {
+        try (Connection connection = connect();
+             PreparedStatement statement = connection.prepareStatement(DELETEENTR);) {
             statement.setInt(1, id);
             statement.executeUpdate();
         }
     }
 
 
-    public Compte selectCompteType(String type) {
+
+
+   /* public Compte selectCompteType(String type) {
         Compte compte = null;
         try (Connection connection = connect();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT);) {
@@ -105,11 +134,11 @@ public class DAOImplCompte implements DAOCompte {
 
         }
         return compte;
-    }
+    }*/
 
 
 
-    public List<Compte> allCompte() throws SQLException {
+    /*public List<Compte> allCompte() throws SQLException {
         List<Compte> comptes = new ArrayList<>();
         Connection connection = connect();;
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL);
@@ -127,5 +156,5 @@ public class DAOImplCompte implements DAOCompte {
             }
             return comptes;
         }
-        }
+        }*/
     }

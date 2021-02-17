@@ -4,7 +4,7 @@ public class Compte {
     private int id;
     private Long numeroCompte;
     private double solde;
-    private String compteType;
+    //private String compteType;
 
     public int getId() {
         return id;
@@ -30,24 +30,19 @@ public class Compte {
         this.solde = solde;
     }
 
-    public String getCompteType() {
-        return compteType;
-    }
 
-    public void setCompteType(String compteType) {
-        this.compteType = compteType;
-    }
 
-    public Compte(Long numeroCompte, double solde, String compteType) {
+
+    public Compte(Long numeroCompte, double solde) {
         this.numeroCompte = numeroCompte;
         this.solde = solde;
-        this.compteType = compteType;
+
     }
 
-    public Compte(int id, Long numeroCompte, double solde, String compteType) {
+    public Compte(int id, Long numeroCompte, double solde) {
         this.id = id;
         this.numeroCompte = numeroCompte;
         this.solde = solde;
-        this.compteType = compteType;
+
     }
 }

@@ -72,7 +72,7 @@ public class Servlet2 extends HttpServlet {
                 out.println(rs.getString(6));
                 out.print("</td>");
                 out.print("<td>");
-                out.print("<a href=delete?id=");
+                out.print("<a href=deleteEntreprise?id=");
                 out.println(id1);
                 out.print(">");
                 out.println("Delete");
@@ -120,7 +120,7 @@ public class Servlet2 extends HttpServlet {
                 ));
                 out.print("</td>");
                 out.print("<td>");
-                out.print("<a href=delete?id=");
+                out.print("<a href=deletePersone?id=");
                 out.println(id1);
                 out.print(">");
                 out.println("Delete");
@@ -141,39 +141,27 @@ public class Servlet2 extends HttpServlet {
         String action = request.getServletPath();
 
         switch (action) {
-            case "/":
-                try {
-                    compteList(request, response);
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
-                break;
             case "/insertEntr":
                 insertEntreprise(request, response);
                 break;
             case "/insertPers":
                 insertPersone(request, response);
                 break;
-            case "/delete":
-                delete(request, response);
+            case "/deleteEntreprise":
+                deleteEntreprise(request, response);
                 break;
-          /*  case "/edit":
-                showEdit(request, response);
+            case "/deletePersone":
+                deletePersone(request, response);
                 break;
-*/
-            case "/update":
-                update(request, response);
+            case "/updatePersone":
+                updatepersone(request, response);
+                break;
+            case "/updateEntreprise":
+                updateEntreprise(request, response);
                 break;
             default:
-               /* try {
-                    compteList(request, response);
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }*/
                 break;
         }
-
-
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -190,16 +178,16 @@ public class Servlet2 extends HttpServlet {
 
     }*/
 
-    private void compteList(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+    /*private void compteList(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         List<Compte> compteList = daoCompte.allCompte();
         request.setAttribute("comptes", compteList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
         dispatcher.forward(request, response);
 
-    }
+    }*/
 
 
-    private void update(HttpServletRequest request, HttpServletResponse response) throws IOException {
+   /* private void update(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String type = request.getParameter("type");
         double solde = Double.parseDouble(request.getParameter("solde"));
         long numero = Long.parseLong(request.getParameter("numero"));
@@ -214,9 +202,39 @@ public class Servlet2 extends HttpServlet {
         response.sendRedirect("index.jsp");
 
 
+    }*/
+   private void updateEntreprise(HttpServletRequest request, HttpServletResponse response) throws IOException {
+      // String type = request.getParameter("type");
+       double solde = Double.parseDouble(request.getParameter("solde"));
+       long numero = Long.parseLong(request.getParameter("numero"));
+       String nom = request.getParameter("nom");
+
+       int id = Integer.parseInt(request.getParameter("id"));
+       Entreprise entreprise = new Entreprise(id, numero, solde, nom);
+       try {
+           daoCompte.updateEntreprise(entreprise);
+       } catch (SQLException throwables) {
+           throwables.printStackTrace();
+       }
+       response.sendRedirect("index.jsp");
+   }
+
+    private void updatepersone(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        double solde = Double.parseDouble(request.getParameter("solde"));
+        long numero = Long.parseLong(request.getParameter("numero"));
+        String nom = request.getParameter("nom");
+        String prenom = request.getParameter("prenom");
+        int id = Integer.parseInt(request.getParameter("id"));
+        Persone persone = new Persone(id, numero, solde, nom,prenom);
+        try {
+            daoCompte.updatePersone(persone);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        response.sendRedirect("index.jsp");
     }
 
-    private void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
+  /*  private void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         int id = Integer.parseInt(request.getParameter("id"));
 
@@ -228,8 +246,35 @@ public class Servlet2 extends HttpServlet {
         }
         response.sendRedirect("index.jsp");
 
-    }
+    }*/
 
+
+    private void deleteEntreprise(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        int id = Integer.parseInt(request.getParameter("id"));
+
+
+        try {
+            daoCompte.deleteEntreprise(id);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        response.sendRedirect("index.jsp");
+
+    }
+    private void deletePersone(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        int id = Integer.parseInt(request.getParameter("id"));
+
+
+        try {
+            daoCompte.deletePersone(id);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        response.sendRedirect("index.jsp");
+
+    }
 
 
 
@@ -247,11 +292,12 @@ public class Servlet2 extends HttpServlet {
     }*/
 
     private void insertEntreprise(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String type = request.getParameter("type");
+        //String type = request.getParameter("type");
         double solde = Double.parseDouble(request.getParameter("solde"));
         long numero = Long.parseLong(request.getParameter("numero"));
         String nom = request.getParameter("nom");
-        Entreprise entreprise = new Entreprise(numero, solde, type,nom);
+      //  String prenom = request.getParameter("prenom");
+        Entreprise entreprise = new Entreprise(numero, solde, nom);
         try {
             daoCompte.insertCompteEntreprise(entreprise);
         } catch (SQLException throwables) {
@@ -261,12 +307,12 @@ public class Servlet2 extends HttpServlet {
     }
 
     private void insertPersone(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String type = request.getParameter("type");
+      //  String type = request.getParameter("type");
         double solde = Double.parseDouble(request.getParameter("solde"));
         long numero = Long.parseLong(request.getParameter("numero"));
         String nom = request.getParameter("nom");
         String prenom = request.getParameter("prenom");
-        Persone persone = new Persone(numero, solde, type,nom,prenom);
+        Persone persone = new Persone(numero, solde, nom,prenom);
         try {
             daoCompte.insertComptePersone(persone);
         } catch (SQLException throwables) {

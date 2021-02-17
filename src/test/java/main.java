@@ -22,12 +22,12 @@ public class main {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }*/
-        Compte compte = new Compte(2,120L,00.00,"nono");
+        /*Compte compte = new Compte(2,120L,00.00,"nono");
         DAOCompte daoCompte = new DAOImplCompte(); {
 
 
         };
-        daoCompte.allCompte();
+        daoCompte.allCompte();*/
     }
 
 }
